@@ -1,4 +1,4 @@
-### Hi there 👋
+### Just a sandbox of stuff I've been tinkering with
 
 <!--
 **brandonBuster/brandonBuster** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
