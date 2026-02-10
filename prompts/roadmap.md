@@ -5,6 +5,7 @@
 - Initialize Next.js and FastAPI apps
 - Add Dockerfile for API
 - Implement basic contact form flow
+- **Done when:** All acceptance criteria in [docs/step-0.md § Definition of Done](../docs/step-0.md#definition-of-done-step-0) are met. Do not mark Phase 0 complete until then.
 
 ### Phase 1 – Cloud foundation
 - Terraform: RG, ACR, Container Apps, Key Vault, App Insights

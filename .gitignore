@@ -1,0 +1,23 @@
+# Local env (requirements §8)
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+
+# Next.js
+apps/web/.next/
+apps/web/out/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# IDE / OS
+.idea/
+.DS_Store
+*.log
