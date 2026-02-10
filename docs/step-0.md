@@ -21,54 +21,54 @@ Use this checklist to implement or verify Step 0. Each item is traceable to the 
 
 ### 1. Monorepo structure
 
-- [ ] **1.1** Root folders exist: `apps/web`, `apps/api`, `infra`, `docs`, `.github`  
+- [x] **1.1** Root folders exist: `apps/web`, `apps/api`, `infra`, `docs`, `.github`  
   _→ requirements.md §7_
 
 ### 2. Frontend (Next.js)
 
-- [ ] **2.1** Next.js app under `apps/web` with `package.json`, runnable via `npm run dev`  
+- [x] **2.1** Next.js app under `apps/web` with `package.json`, runnable via `npm run dev`  
   _→ roadmap Phase 0; requirements §8_
-- [ ] **2.2** Clean URLs supported (e.g. `/contact`)  
+- [x] **2.2** Clean URLs supported (e.g. `/contact`)  
   _→ requirements §3 (SEO)_
-- [ ] **2.3** Contact page with form fields: name, email, message  
+- [x] **2.3** Contact page with form fields: name, email, message  
   _→ requirements §2 (Contact)_
-- [ ] **2.4** Form submits to API (`POST /api/contact`); target URL configurable via env (e.g. `NEXT_PUBLIC_API_URL`)  
+- [x] **2.4** Form submits to API (`POST /api/contact`); target URL configurable via env (e.g. `NEXT_PUBLIC_API_URL`)  
   _→ requirements §2, §8_
-- [ ] **2.5** `.env.example` in `apps/web` committed; `.env.local` in `.gitignore`  
+- [x] **2.5** `.env.example` in `apps/web` committed; `.env.local` in `.gitignore`  
   _→ requirements §8_
 
 ### 3. Backend (FastAPI)
 
-- [ ] **3.1** FastAPI app under `apps/api` with `POST /api/contact`  
+- [x] **3.1** FastAPI app under `apps/api` with `POST /api/contact`  
   _→ roadmap Phase 0; requirements §2, §4 (Backend)_
-- [ ] **3.2** Request body validated (name, email, message); appropriate status codes (e.g. 200, 422)  
+- [x] **3.2** Request body validated (name, email, message); appropriate status codes (e.g. 200, 422)  
   _→ requirements §4 (Input validation)_
-- [ ] **3.3** Runnable locally with `uvicorn main:app --reload`  
+- [x] **3.3** Runnable locally with `uvicorn main:app --reload`  
   _→ requirements §8_
-- [ ] **3.4** `.env.example` in `apps/api` committed; `.env.local` (or equivalent) gitignored  
+- [x] **3.4** `.env.example` in `apps/api` committed; `.env.local` (or equivalent) gitignored  
   _→ requirements §8_
-- [ ] **3.5** TODO or stub for email delivery (SendGrid); no secrets in repo  
+- [x] **3.5** TODO or stub for email delivery (SendGrid); no secrets in repo  
   _→ requirements §2, §3 (Security)_
 
 ### 4. API container
 
-- [ ] **4.1** Dockerfile for the API present (e.g. under `apps/api/`)  
+- [x] **4.1** Dockerfile for the API present (e.g. under `apps/api/`)  
   _→ roadmap Phase 0_
-- [ ] **4.2** Image builds successfully (`docker build` in API directory)  
+- [x] **4.2** Image builds successfully (`docker build` in API directory)  
   _→ prerequisite for Phase 1_
 
 ### 5. Infra and CI placeholders (minimal)
 
-- [ ] **5.1** `infra/` has placeholder structure or README (e.g. `envs/dev`, `envs/prod`, `modules/` or note that Terraform is Phase 1)  
+- [x] **5.1** `infra/` has placeholder structure or README (e.g. `envs/dev`, `envs/prod`, `modules/` or note that Terraform is Phase 1)  
   _→ requirements §5 (Terraform structure); no full Terraform in Step 0_
-- [ ] **5.2** `.github/workflows/` exists or is documented as Phase 3  
+- [x] **5.2** `.github/workflows/` exists or is documented as Phase 3  
   _→ requirements §6, §7; CI/CD is Phase 3_
 
 ### 6. Documentation
 
-- [ ] **6.1** This file (`docs/step-0.md`) exists and checklist is traceable to requirements and roadmap  
+- [x] **6.1** This file (`docs/step-0.md`) exists and checklist is traceable to requirements and roadmap  
   _→ deliverable_
-- [ ] **6.2** Brief local dev instructions (how to run web + api) in README or `docs/`  
+- [x] **6.2** Brief local dev instructions (how to run web + api) in README or `docs/`  
   _→ requirements §8 (Clear documentation for local dev)_
 
 ---
