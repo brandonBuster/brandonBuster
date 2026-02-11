@@ -17,6 +17,11 @@ __pycache__/
 venv/
 *.egg-info/
 
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
 # IDE / OS
 .idea/
 .DS_Store
