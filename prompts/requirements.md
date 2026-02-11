@@ -71,6 +71,7 @@
 - Terraform-based infrastructure
 - Automated formatting and validation in CI
 - Clear documentation for local dev and deployment
+- Every file change should get its own git commit
 
 ---
 
