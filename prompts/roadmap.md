@@ -10,6 +10,7 @@
 ### Phase 1 – Cloud foundation
 - Terraform: RG, ACR, Container Apps, Key Vault, App Insights
 - Deploy API container
+- **Done when:** All acceptance criteria in [docs/phase-1.md § Definition of Done](../docs/phase-1.md#definition-of-done-phase-1) are met. Do not mark Phase 1 complete until then.
 
 ### Phase 2 – Edge and gateway
 - Add APIM
