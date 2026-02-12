@@ -28,3 +28,8 @@ output "application_insights_instrumentation_key" {
   sensitive   = true
   description = "App Insights instrumentation key."
 }
+
+output "dns_nameservers" {
+  value       = azurerm_dns_zone.main.name_servers
+  description = "Nameservers to set at Namecheap (Domain → Manage → Nameservers → Custom DNS)."
+}
