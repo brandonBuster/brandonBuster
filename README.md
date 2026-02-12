@@ -1,6 +1,6 @@
 # BrandonBuster.com
 
-Static brochure site + API. See **requirements.md** and **roadmap.md** in `/prompts`. Step 0 (scaffold) checklist and Definition of Done: **docs/step-0.md**.
+Static brochure site + API. See **requirements.md** and **roadmap.md** in `/prompts`. Step 0: **docs/step-0.md**. Phase 1: **docs/phase-1.md**.
 
 ## Local development (Step 0)
 
@@ -33,3 +33,7 @@ cd apps/api
 docker build -t brandonbuster-api .
 docker run -p 8000:8000 brandonbuster-api
 ```
+
+## Phase 1 – Deploy API to Azure
+
+Terraform in **infra/envs/dev** (and **prod**) provisions RG, ACR, Key Vault, App Insights, and Container Apps. To build, push, and run the API in Azure, see **infra/README.md** (bootstrap, apply, deploy API container).
