@@ -19,8 +19,8 @@ output "key_vault_name" {
 }
 
 output "container_app_api_fqdn" {
-  value       = azurerm_container_app.api.latest_revision_fqdn
-  description = "API Container App FQDN (https://<this>)."
+  value       = "http://${azurerm_container_app.api.name}.${azurerm_container_app_environment.main.default_domain}/"
+  description = "API Container App URL (stable)."
 }
 
 output "application_insights_instrumentation_key" {
