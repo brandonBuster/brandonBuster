@@ -5,7 +5,7 @@ locals {
   env   = var.environment
   base  = "${var.prefix}-${local.env}"
   rg    = "${local.base}-rg"
-  acr   = replace("${local.base}acr", "-", "") # ACR: alphanumeric only, globally unique
+  acr   = replace("${local.base}acr${var.acr_name_suffix}", "-", "") # ACR: alphanumeric only, globally unique
   kv    = replace("${local.base}-kv", "-", "")  # Key Vault: alphanumeric and hyphen, globally unique
   log   = "${local.base}-log"
   appi  = "${local.base}-appi"

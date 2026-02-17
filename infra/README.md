@@ -19,6 +19,46 @@ Requirements §5: state in Azure Storage, one key per environment.
 
 Until then, Terraform uses local state (fine for trying things out; not for team/production).
 
+## Prod-first deploy
+
+To prioritize prod (DNS for brandonbuster.com + API in Azure) and do dev later:
+
+1. **Apply prod** (creates RG, ACR, Key Vault, Log Analytics, App Insights, Container Apps, DNS zone, www CNAME, alerts):
+   ```bash
+   cd infra/envs/prod
+   terraform init
+   terraform plan
+   terraform apply
+   ```
+
+2. **Get outputs** (use these in the steps below):
+   ```bash
+   terraform output acr_name
+   terraform output acr_login_server
+   terraform output container_app_api_fqdn
+   terraform output dns_nameservers
+   ```
+
+3. **Point Namecheap at Azure DNS**  
+   At Namecheap: Domain → Manage → Nameservers → Custom DNS. Enter the four nameservers from `dns_nameservers`. (www will resolve after Front Door is set in Phase 2; apex in Phase 2.)
+
+4. **Build and push the API image to prod ACR**
+   ```bash
+   az acr login --name $(cd infra/envs/prod && terraform output -raw acr_name)
+   docker build -t $(cd infra/envs/prod && terraform output -raw acr_login_server)/api:latest ./apps/api
+   docker push $(cd infra/envs/prod && terraform output -raw acr_login_server)/api:latest
+   ```
+   (From repo root. Or substitute the actual `acr_name` and `acr_login_server` from step 2.)
+
+5. **Switch Container App to your image**
+   ```bash
+   cd infra/envs/prod
+   terraform apply -var="container_app_api_image=$(terraform output -raw acr_login_server)/api:latest" -var="container_app_api_port=8000"
+   ```
+
+6. **Verify**  
+   Open `https://<container_app_api_fqdn>/docs` (from output in step 2). Dev can be applied later when needed.
+
 ## Apply (dev)
 
 ```bash

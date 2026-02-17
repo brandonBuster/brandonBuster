@@ -4,7 +4,7 @@ locals {
   env   = var.environment
   base  = "${var.prefix}-${local.env}"
   rg    = "${local.base}-rg"
-  acr   = replace("${local.base}acr", "-", "")
+  acr   = replace("${local.base}acr${var.acr_name_suffix}", "-", "")
   kv    = replace("${local.base}-kv", "-", "")
   log   = "${local.base}-log"
   appi  = "${local.base}-appi"

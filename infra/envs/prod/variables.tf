@@ -22,6 +22,12 @@ variable "acr_sku" {
   description = "ACR SKU: Basic, Standard, Premium."
 }
 
+variable "acr_name_suffix" {
+  type        = string
+  default     = "buster"
+  description = "Optional suffix for ACR name (alphanumeric). Use if bbprodacr is already taken (e.g. 'buster' -> bbprodacrbuster)."
+}
+
 variable "container_app_api_image" {
   type        = string
   description = "Full image reference for the API container (e.g. bbprodacr.azurecr.io/api:latest)."
