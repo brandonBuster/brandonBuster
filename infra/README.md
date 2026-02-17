@@ -10,7 +10,7 @@ Phase 1 layout: **envs/dev** and **envs/prod** each provision RG, ACR, Key Vault
 
 ## Remote state (bootstrap, one-time)
 
-Requirements §5: state in Azure Storage, one key per environment.
+Requirements Section 5: state in Azure Storage, one key per environment.
 
 1. Create a resource group and storage account for state (e.g. `bb-tfstate-rg`, `bbtfstate`).
 2. Create a container in that account, e.g. `tfstate`.
@@ -60,6 +60,17 @@ To prioritize prod (DNS for brandonbuster.com + API in Azure) and do dev later:
 
 6. **Verify**  
    Open `https://<container_app_api_fqdn>/docs` (from output in step 2). Dev can be applied later when needed.
+
+## Phase 2 – Front Door + WAF (prod)
+
+See **docs/phase-2.md** for the full checklist. After Phase 1, running `terraform apply` in **envs/prod** also creates:
+
+- **Azure Front Door** (Premium) profile and endpoint
+- **WAF policy** attached to the profile
+- **Origin** → Container App (API); **route** `/*` → API
+- **www** CNAME in DNS → Front Door endpoint hostname
+
+So `https://www.brandonbuster.com` will go through Front Door and WAF to your API once DNS has propagated. Apex (`brandonbuster.com`) can be added later (alias record). Custom domains on Front Door (for TLS and nicer URLs) are an optional next step in phase-2.md.
 
 ## Apply (dev)
 

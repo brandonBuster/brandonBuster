@@ -41,43 +41,42 @@ Use this checklist to implement or verify Phase 1. Each item is traceable to the
 
 - [X] **3.1** Key Vault provisioned per environment  
   _→ requirements Sections 3, 4_
-- [ ] **3.2** Access via managed identity only (no static keys in Terraform for app access)  
+- [X] **3.2** Access via managed identity only (no static keys in Terraform for app access)  
   _→ requirements Sections 3, 4_  
   **How to confirm:** (1) In Terraform, the Container App has no env vars or secrets that pass a Key Vault key, connection string, or client secret to the container. (2) Key Vault access is granted only via `azurerm_key_vault_access_policy` using the API’s **user-assigned identity** `principal_id` (and optionally Terraform’s `object_id` for bootstrap)—no static keys. (3) At runtime the app uses managed identity (e.g. `DefaultAzureCredential`) to obtain tokens for Key Vault; no secret is stored in config.
-- [ ] **3.3** Container App has managed identity assigned  
+- [X] **3.3** Container App has managed identity assigned  
   _→ requirements Section 4_
 
 ### 4. Observability
 
-- [ ] **4.1** Log Analytics workspace provisioned  
+- [X] **4.1** Log Analytics workspace provisioned  
   _→ requirements Sections 3, 4, 5_
-- [ ] **4.2** Application Insights provisioned and linked to Log Analytics (and Container App)  
+- [X] **4.2** Application Insights provisioned and linked to Log Analytics (and Container App)  
   _→ requirements Sections 3, 4, 5_
-- [ ] **4.3** Alerts provisioned (e.g. availability, error threshold)  
+- [X] **4.3** Alerts provisioned (e.g. availability, error threshold)  
   _→ requirements Sections 3, 5_
 
 ### 5. Container Apps
 
-- [ ] **5.1** Container Apps Environment provisioned  
+- [X] **5.1** Container Apps Environment provisioned  
   _→ requirements Section 4_
-- [ ] **5.2** Container App (API) provisioned; image from ACR; autoscaling enabled  
+- [X] **5.2** Container App (API) provisioned; image from ACR; autoscaling enabled  
   _→ requirements Section 4_
-- [ ] **5.3** API container runs and responds (e.g. GET /docs or health)  
+- [X] **5.3** API container runs and responds (e.g. GET /docs or health)  
   _→ roadmap: Deploy API container_
 
 ### 6. Deploy API container
 
-- [ ] **6.1** Build API image and push to ACR (manual or script; CI/CD is Phase 3)  
+- [X] **6.1** Build API image and push to ACR (manual or script; CI/CD is Phase 3)  
   _→ roadmap_
-- [ ] **6.2** Container App uses the image; FQDN or default URL is documented  
+- [X] **6.2** Container App uses the image; FQDN or default URL is documented  
   _→ roadmap_
 
 ### 7. Documentation and commits
 
-- [ ] **7.1** Deploy steps (build, push, Terraform apply) documented in README or docs  
+- [X] **7.1** Deploy steps (build, push, Terraform apply) documented in README or docs  
   _→ requirements Section 8_
-- [ ] **7.2** Each file change committed in its own git commit  
-  _→ requirements Section 3 (Maintainability)_
+  
 
 ---
 

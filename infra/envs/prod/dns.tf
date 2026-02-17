@@ -1,11 +1,5 @@
 # Azure DNS zone for brandonbuster.com (Namecheap domain; nameservers set at registrar).
-# Uses existing RG, provider, and tagging. Local state per environment.
-
-variable "www_cname_target" {
-  type        = string
-  default     = "example.azurefd.net"
-  description = "Target for the www CNAME record (e.g. Front Door endpoint)."
-}
+# Phase 2: www and (optional) apex point to Front Door. See docs/phase-2.md.
 
 resource "azurerm_dns_zone" "main" {
   name                = "brandonbuster.com"
@@ -13,13 +7,15 @@ resource "azurerm_dns_zone" "main" {
   tags                = local.tags
 }
 
-# TODO: Apex (@) record will later alias to Azure Front Door (Phase 2+).
-# Leave unconfigured until Front Door is provisioned.
-
+# www → Front Door endpoint (Phase 2)
 resource "azurerm_dns_cname_record" "www" {
   name                = "www"
   zone_name           = azurerm_dns_zone.main.name
   resource_group_name = azurerm_resource_group.main.name
   ttl                 = 300
-  record              = var.www_cname_target
+  record              = azurerm_cdn_frontdoor_endpoint.main.host_name
 }
+
+# Apex: use Azure DNS alias record to Front Door when supported, or add CNAME flattening.
+# Optional – uncomment and set target when apex routing is required.
+# resource "azurerm_dns_a_record" "apex" { ... }

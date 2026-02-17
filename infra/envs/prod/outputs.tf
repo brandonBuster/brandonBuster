@@ -33,3 +33,9 @@ output "dns_nameservers" {
   value       = azurerm_dns_zone.main.name_servers
   description = "Nameservers to set at Namecheap (Domain → Manage → Nameservers → Custom DNS)."
 }
+
+# Phase 2 – Front Door
+output "frontdoor_endpoint_hostname" {
+  value       = azurerm_cdn_frontdoor_endpoint.main.host_name
+  description = "Front Door default endpoint hostname (use for www CNAME)."
+}
