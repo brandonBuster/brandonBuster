@@ -45,10 +45,12 @@ To prioritize prod (DNS for brandonbuster.com + API in Azure) and do dev later:
 4. **Build and push the API image to prod ACR**
    ```bash
    az acr login --name $(cd infra/envs/prod && terraform output -raw acr_name)
-   docker build -t $(cd infra/envs/prod && terraform output -raw acr_login_server)/api:latest ./apps/api
+   docker build --platform linux/amd64 -t $(cd infra/envs/prod && terraform output -raw acr_login_server)/api:latest ./apps/api
    docker push $(cd infra/envs/prod && terraform output -raw acr_login_server)/api:latest
    ```
-   (From repo root. Or substitute the actual `acr_name` and `acr_login_server` from step 2.)
+   (From repo root. Use `--platform linux/amd64` on Apple Silicon so Azure Container Apps can pull the image.)
+
+   (Or substitute the actual `acr_name` and `acr_login_server` from step 2.)
 
 5. **Switch Container App to your image**
    ```bash
@@ -88,9 +90,9 @@ After `terraform apply` for dev:
    `<acr_name>` is in Terraform output `acr_name` (e.g. `bbdevacr`).
 
 2. **Build and push**
-   From repo root:
+   From repo root (use `--platform linux/amd64` on Apple Silicon):
    ```bash
-   docker build -t <acr_login_server>/api:latest ./apps/api
+   docker build --platform linux/amd64 -t <acr_login_server>/api:latest ./apps/api
    docker push <acr_login_server>/api:latest
    ```
    `<acr_login_server>` is Terraform output `acr_login_server` (e.g. `bbdevacr.azurecr.io`).
