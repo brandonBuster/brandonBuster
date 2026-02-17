@@ -118,7 +118,7 @@ resource "azurerm_container_app" "api" {
   }
 
   template {
-    min_replicas = 0
+    min_replicas = 1  # keep one replica to avoid "stopped" and cold starts; set to 0 to scale to zero
     max_replicas = 3
     container {
       name   = "api"
