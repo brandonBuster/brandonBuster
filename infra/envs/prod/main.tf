@@ -120,6 +120,10 @@ resource "azurerm_container_app" "api" {
   template {
     min_replicas = 1  # keep one replica to avoid "stopped" and cold starts; set to 0 to scale to zero
     max_replicas = 3
+    http_scale_rule {
+      name                = "http"
+      concurrent_requests = 100
+    }
     container {
       name   = "api"
       image  = var.container_app_api_image
